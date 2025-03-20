@@ -47,20 +47,11 @@ function getTime(date) {
  * '03 Dec 1995 00:12:00 UTC' => 'Sunday'
  * '2024-01-30T00:00:00.000Z' => 'Tuesday'
  */
-function getDayName(/* date */) {
-  // const days = [
-  //   'Monday',
-  //   'Tuesday',
-  //   'Wensday',
-  //   'Thursday',
-  //   'Friday',
-  //   'Sunday',
-  //   'Saturday',
-  // ];
-  // const newDate = new Date(date);
-  // const day = (newDate.getDay() + 6) % 7;
-  // return days[day];
-  throw new Error('Not implemented');
+function getDayName(date) {
+  const option = { weekday: 'long' };
+  const newDate = new Date(date);
+  const reverseInDay = new Intl.DateTimeFormat('en-US', option).format(newDate);
+  return reverseInDay;
 }
 /**
  * Returns the date of the next Friday from a given date.
@@ -146,10 +137,10 @@ function isDateInPeriod(date, period) {
  * '1999-01-05T02:20:00.000Z' => '1/5/1999, 2:20:00 AM'
  * '2010-12-15T22:59:00.000Z' => '12/15/2010, 10:59:00 PM'
  */
-function formatDate(/* date */) {
-  throw new Error('Not implemented');
+function formatDate(date) {
+  const newDate = new Date(date);
+  return newDate.toLocaleString('en-US', { timeZone: 'UTC' });
 }
-
 /**
  * Returns the total number of weekend days (Saturdays and Sundays) in a specified month and year.
  *
@@ -163,9 +154,13 @@ function formatDate(/* date */) {
  * 1, 2024 => 8
  */
 function getCountWeekendsInMonth(/* month, year */) {
+  // const newDate = new Date(year, month, 0);
+  // const weekendDay = newDate.getDate();
+  // // if (weekendDay === 0 && )
+  // console.log(weekendDay);
   throw new Error('Not implemented');
 }
-
+// console.log(getCountWeekendsInMonth(5, 2022));
 /**
  * Returns the week number of the year for a given date.
  * The first week of the year is defined according to ISO8601.

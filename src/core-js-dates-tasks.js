@@ -47,18 +47,20 @@ function getTime(date) {
  * '03 Dec 1995 00:12:00 UTC' => 'Sunday'
  * '2024-01-30T00:00:00.000Z' => 'Tuesday'
  */
-function getDayName(date) {
-  const days = [
-    'Saturday',
-    'Monday',
-    'Tuesday',
-    'Wensday',
-    'Thursday',
-    'Friday',
-    'Sunday',
-  ];
-  const newDate = new Date(date);
-  return days[newDate.getDay()];
+function getDayName(/* date */) {
+  // const days = [
+  //   'Monday',
+  //   'Tuesday',
+  //   'Wensday',
+  //   'Thursday',
+  //   'Friday',
+  //   'Sunday',
+  //   'Saturday',
+  // ];
+  // const newDate = new Date(date);
+  // const day = (newDate.getDay() + 6) % 7;
+  // return days[day];
+  throw new Error('Not implemented');
 }
 /**
  * Returns the date of the next Friday from a given date.
@@ -86,10 +88,10 @@ function getNextFriday(/* date */) {
  * 1, 2024 => 31
  * 2, 2024 => 29
  */
-function getCountDaysInMonth(/* month, year */) {
-  throw new Error('Not implemented');
+function getCountDaysInMonth(month, year) {
+  const getDay = new Date(year, month, 0);
+  return getDay.getDate();
 }
-
 /**
  * Returns the total number of days between two dates, including both the start and end dates.
  *
@@ -101,10 +103,11 @@ function getCountDaysInMonth(/* month, year */) {
  * '2024-02-01T00:00:00.000Z', '2024-02-02T00:00:00.000Z'  => 2
  * '2024-02-01T00:00:00.000Z', '2024-02-12T00:00:00.000Z'  => 12
  */
-function getCountDaysOnPeriod(/* dateStart, dateEnd */) {
-  throw new Error('Not implemented');
+function getCountDaysOnPeriod(dateStart, dateEnd) {
+  const startDate = new Date(dateStart);
+  const endDate = new Date(dateEnd);
+  return (endDate - startDate) / (1000 * 60 * 60 * 24) + 1;
 }
-
 /**
  * Returns true if a given date is within a specified range, including both the start and end dates.
  *
@@ -122,8 +125,14 @@ function getCountDaysOnPeriod(/* dateStart, dateEnd */) {
  * '2024-02-02', { start: '2024-02-02', end: '2024-03-02' } => true
  * '2024-02-10', { start: '2024-02-02', end: '2024-03-02' } => true
  */
-function isDateInPeriod(/* date, period */) {
-  throw new Error('Not implemented');
+function isDateInPeriod(date, period) {
+  let isTrue;
+  if (date >= period.start && date < period.end) {
+    isTrue = true;
+  } else {
+    isTrue = false;
+  }
+  return isTrue;
 }
 
 /**

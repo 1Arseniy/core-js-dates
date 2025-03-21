@@ -157,7 +157,7 @@ function getCountWeekendsInMonth(/* month, year */) {
   // const newDate = new Date(year, month, 0);
   // const weekendDay = newDate.getDate();
   // // if (weekendDay === 0 && )
-  // console.log(weekendDay);
+  // console.log(newDate.getDay());
   throw new Error('Not implemented');
 }
 // console.log(getCountWeekendsInMonth(5, 2022));
@@ -204,10 +204,36 @@ function getNextFridayThe13th(/* date */) {
  * Date(2024, 5, 1) => 2
  * Date(2024, 10, 10) => 4
  */
-function getQuarter(/* date */) {
-  throw new Error('Not implemented');
+function getQuarter(date) {
+  const mounth = date.getMonth();
+  let quarter;
+  switch (mounth) {
+    case 1:
+    case 2:
+    case 12:
+      quarter = 1;
+      break;
+    case 3:
+    case 4:
+    case 5:
+      quarter = 2;
+      break;
+    case 6:
+    case 7:
+    case 8:
+      quarter = 3;
+      break;
+    case 9:
+    case 10:
+    case 11:
+      quarter = 4;
+      break;
+    default:
+      quarter = 1;
+      break;
+  }
+  return quarter;
 }
-
 /**
  * Generates an employee's work schedule within a specified date range, based on a pattern of working and off days.
  * The start and end dates of the period are inclusive.
@@ -242,10 +268,16 @@ function getWorkSchedule(/* period, countWorkDays, countOffDays */) {
  * Date(2022, 2, 1) => false
  * Date(2020, 2, 1) => true
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  const year = date.getFullYear();
+  let isTrue;
+  if (year % 4 === 0 || year % 400 === 0 || year % 100 === 1) {
+    isTrue = true;
+  } else {
+    isTrue = false;
+  }
+  return isTrue;
 }
-
 module.exports = {
   dateToTimestamp,
   getTime,

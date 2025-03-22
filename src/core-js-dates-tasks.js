@@ -65,27 +65,31 @@ function getDayName(date) {
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
 function getNextFriday(date) {
+  const newDate = new Date(date.getFullYear(), date.getMonth());
+  const daysMounth = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0
+  ).getDate();
+  const firstFriday = 6 - newDate.getDay();
+  const arrFridays = [];
+  for (let i = firstFriday; i <= daysMounth; i += 7) {
+    if (i !== 0) {
+      arrFridays.push(i);
+    }
+  }
+  const nowDate = date.getDate();
+  const nextFriday = arrFridays.find((el) => nowDate < el);
   const newDate1 = new Date(
     date.getFullYear(),
     date.getMonth(),
-    date.getDay() + 3,
+    nextFriday,
     date.getHours(),
     date.getMinutes(),
     date.getSeconds()
   );
-  console.log(newDate1);
-  // console.log(date.getDay());
-  // const
-  // const getNextFr = 5 + date.getDay();
-  // console.log(getNextFr);
-  // const newDate = new date()
-  // const
-  // const option = { weekday: 'long' };
-  // const nowDay = new Intl.DateTimeFormat('en-US', option).format(date);
-  // console.log(date.setDate(nowDay));
-  // throw new Error('Not implemented');
+  return newDate1;
 }
-console.log(getNextFriday(new Date('2024-02-13T00:00:00Z')));
 
 /**
  * Returns the number of days in a specified month and year.
@@ -172,41 +176,30 @@ function formatDate(date) {
  * 12, 2023 => 10
  * 1, 2024 => 8
  */
-function getCountWeekendsInMonth(/* month, year */) {
-  // const newDate = new Date(year, month).getDay();
-  // const dayInTheMounth = new Date(year, month + 1, 0).getDate();
-  // const saturday = 7 - newDate;
-  // const sunday = 8 - newDate;
+function getCountWeekendsInMonth(month, year) {
+  const startDate = new Date(year, month - 1).getDay();
+  const dayInTheMounth = new Date(year, month, 0).getDate();
+  const beforeSat = 6 - startDate;
+  const beforeSun = 8 - startDate;
 
-  // let value;
-  // let value2;
-  // if (saturday >= 0) {
-  //   value = 1;
-  // } else {
-  //   value = 0;
-  // }
-  // if (newDate === 0) {
-  //   newDate = 1;
-  // }
-  // // if (sunday === 0) {
-  // //   newDate = 1;
-  // // }
-  // // value2 = 1;
-  // // } else {
-  // //   value2 = 0;
-  // // }
-  // // if (value === 0) {
-  // // }
-  // for (let i = newDate; i <= dayInTheMounth; i += 7) {
-  //   value += 1;
-  // }
-  // for (let i = newDate; i <= dayInTheMounth; i += 8) {
-  //   value2 += 1;
-  // }
-  // console.log(value, value2);
-  throw new Error('Not implemented');
+  let countSat = 0;
+  let countSun = 0;
+  let startDateSun;
+
+  if (beforeSun === 8) {
+    startDateSun = 1;
+  } else {
+    startDateSun = beforeSun;
+  }
+
+  for (let i = beforeSat + 1; i <= dayInTheMounth; i += 7) {
+    countSat += 1;
+  }
+  for (let i = startDateSun; i <= dayInTheMounth; i += 7) {
+    countSun += 1;
+  }
+  return countSat + countSun;
 }
-// console.log(getCountWeekendsInMonth(3, 2025));
 /**
  * Returns the week number of the year for a given date.
  * The first week of the year is defined according to ISO8601.

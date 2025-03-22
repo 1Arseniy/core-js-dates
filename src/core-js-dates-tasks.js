@@ -64,9 +64,28 @@ function getDayName(date) {
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  const newDate1 = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDay() + 3,
+    date.getHours(),
+    date.getMinutes(),
+    date.getSeconds()
+  );
+  console.log(newDate1);
+  // console.log(date.getDay());
+  // const
+  // const getNextFr = 5 + date.getDay();
+  // console.log(getNextFr);
+  // const newDate = new date()
+  // const
+  // const option = { weekday: 'long' };
+  // const nowDay = new Intl.DateTimeFormat('en-US', option).format(date);
+  // console.log(date.setDate(nowDay));
+  // throw new Error('Not implemented');
 }
+console.log(getNextFriday(new Date('2024-02-13T00:00:00Z')));
 
 /**
  * Returns the number of days in a specified month and year.
@@ -154,13 +173,40 @@ function formatDate(date) {
  * 1, 2024 => 8
  */
 function getCountWeekendsInMonth(/* month, year */) {
-  // const newDate = new Date(year, month, 0);
-  // const weekendDay = newDate.getDate();
-  // // if (weekendDay === 0 && )
-  // console.log(newDate.getDay());
+  // const newDate = new Date(year, month).getDay();
+  // const dayInTheMounth = new Date(year, month + 1, 0).getDate();
+  // const saturday = 7 - newDate;
+  // const sunday = 8 - newDate;
+
+  // let value;
+  // let value2;
+  // if (saturday >= 0) {
+  //   value = 1;
+  // } else {
+  //   value = 0;
+  // }
+  // if (newDate === 0) {
+  //   newDate = 1;
+  // }
+  // // if (sunday === 0) {
+  // //   newDate = 1;
+  // // }
+  // // value2 = 1;
+  // // } else {
+  // //   value2 = 0;
+  // // }
+  // // if (value === 0) {
+  // // }
+  // for (let i = newDate; i <= dayInTheMounth; i += 7) {
+  //   value += 1;
+  // }
+  // for (let i = newDate; i <= dayInTheMounth; i += 8) {
+  //   value2 += 1;
+  // }
+  // console.log(value, value2);
   throw new Error('Not implemented');
 }
-// console.log(getCountWeekendsInMonth(5, 2022));
+// console.log(getCountWeekendsInMonth(3, 2025));
 /**
  * Returns the week number of the year for a given date.
  * The first week of the year is defined according to ISO8601.
